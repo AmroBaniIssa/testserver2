@@ -34,7 +34,7 @@ app.get("/getmovies",getMoviesHandel)
 app.get("/getmovie/:id",getMovieOneHandel)
 app.post("/addemovie",addMovieHandel)
 app.delete("/deletemovie/:id",deleteMovieHandel)
-// app.put("/updatemovie/:id",updateMovieHandel)
+app.put("/updatemovie/:id",updateMovieHandel)
 
 
 // handlers ===============
@@ -58,14 +58,14 @@ function getMovieOneHandel(req,res){
     res.status(200).json(data.rows);
   })
 }
-// function updateMovieHandel(req,res){
-//   const movieid =req.params.id;
-//   const sql=`update movies set title=$1,release_date=$2,path=$3,overview=$4 where id=${movieid} ; `
-//   const values=[req.body.title,req.body.release_date,req.bode.path,req.bode.overview];
-//   client.query(sql,values).then((data)=>{
-//     res.status(200).send(data.rows);
-//   })
-// }
+function updateMovieHandel(req,res){
+  const movieid =req.params.id;
+  const sql=`update movies set title=$1,release_date=$2,imeg_path=$3,overview=$4 where id=${movieid} ; `
+  const values=[req.body.title,req.body.release_date,req.body.imeg_path,req.body.overview];
+  client.query(sql,values).then((data)=>{
+    res.status(200).send(data.rows);
+  })
+}
 function addMovieHandel(req,res){
   const movie=req.body;
   console.log(movie)
